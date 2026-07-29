@@ -12,23 +12,31 @@ py -m pip install tree_sitter tree_sitter_rust
 
 ## 実行方法
 
-Windowsのコマンドプロンプトで，リポジトリのルートディレクトリから次のコマンドを実行します．
+必要なPythonパッケージをインストールします．
+
+```bat
+py -m pip install -r requirements.txt
+```
+
+各Rustプロジェクトから関数およびメソッドを抽出した後，次のコマンドを実行します．
 
 ```bat
 py build_rust_clone_dataset.py ^
   --source-root "<Rustプロジェクト群のディレクトリ>" ^
-  --result-root "<関数およびメソッドの抽出結果のディレクトリ>" ^
+  --result-root "<抽出結果のディレクトリ>" ^
   --out-dir "<出力先ディレクトリ>" ^
-  --num-seeds 0 ^
-  --positive-pair-mode original_only ^
   --target-low-negatives 30000 ^
   --target-similar-negatives 30000
 ```
 
-- `--source-root`：Rustプロジェクト群を格納したディレクトリ
-- `--result-root`：関数およびメソッドの抽出結果を格納したディレクトリ
-- `--out-dir`：生成結果の出力先ディレクトリ
+- `--source-root`：Rustプロジェクト群を格納したディレクトリを指定します．
+- `--result-root`：関数およびメソッドの抽出結果を格納したディレクトリを指定します．
+- `--out-dir`：生成結果の出力先ディレクトリを指定します．
+- `--target-low-negatives`：低類似度の負例対の目標生成数を指定します．デフォルトは0です．
+- `--target-similar-negatives`：一定の類似性を持つ負例対の目標生成数を指定します．デフォルトは0です．
 
+負例対について，指定した組数を生成できない場合は，条件を満たす候補の範囲内で可能な限り生成します．  
+負例対を生成しない場合は，2つの負例対生成数に関するオプションを省略できます．
 ## 出力ファイル
 
 | ファイル | 内容 |
