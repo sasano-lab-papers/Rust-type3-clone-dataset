@@ -53,14 +53,14 @@ py build_rust_clone_dataset.py ^
 指定した数の負例対を選定できない場合は，条件を満たす候補の範囲内で可能な限り選定します．
 負例対を選定しない場合は，これら2つのオプションを省略できます．
 
+## 主な出力ファイル
+
 | ファイル | 内容 |
 |---|---|
-| `generated_project/src/*.rs` | 生成した関数およびメソッドを格納したRustファイル |
-| `dataset_functions.jsonl` | データセットに含まれる関数およびメソッドの情報 |
-| `dataset_pairs.csv` | 正例クローン対と負例対を含むラベル付きペア |
-| `selected_seeds.jsonl` | seedとして選定された関数およびメソッドの情報 |
-| `mutation_log.jsonl` | 適用した変換と生成結果の記録 |
-| `seed_rejections.csv` | seedとして選定されなかった候補とその理由 |
-| `summary.json` | 生成数や変換種別ごとの集計結果 |
+| `generated_project/src/*.rs` | 生成したRustコード |
+| `dataset_functions.jsonl` | 関数およびメソッドの情報 |
+| `dataset_pairs.csv` | 正例対（`label=1`）および負例対（`label=0`） |
+| `mutation_log.jsonl` | 適用した変換の記録 |
+| `summary.json` | 生成結果の集計 |
 
 `dataset_pairs.csv`では，正例クローン対を`1`，負例対を`0`として記録します．
