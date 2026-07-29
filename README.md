@@ -10,6 +10,21 @@ Rustオープンソースプロジェクトから抽出した関数およびメ�
 py -m pip install tree_sitter tree_sitter_rust
 ```
 
+## 入力データの準備
+
+本プログラムの実行には，各Rustプロジェクトから抽出した関数およびメソッドの情報が必要です．
+
+関数およびメソッドの抽出には，[Rust Type-3 Code Clone Detector](https://github.com/sasano-lab-papers/Rust-type3-clone-detector)の`function_extractor`を使用します．
+
+```bat
+cargo run --release ^
+  --manifest-path crates\function_extractor\Cargo.toml ^
+  -- "<Rustプロジェクトのパス>" "<出力先>\functions_rust.jsonl"
+```
+
+複数のRustプロジェクトを使用する場合は，プロジェクトごとに抽出処理を行い，次のように保存します．
+
+
 ## 実行方法
 
 必要なPythonパッケージをインストールします．
